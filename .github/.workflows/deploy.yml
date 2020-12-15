@@ -1,0 +1,42 @@
+name: Deploy
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: check code
+        uses: actions/checkout@v2
+      - name: Set up Maven Central Repository
+          uses: actions/setup-java@v1
+          with:
+            java-version: 11
+      - name: maven install
+        run: mvn clean package -Dmaven.test.skip=true
+      - name: Copy
+        run: |
+          mkdir -p deployments
+          rsync target/lib/ deployments/lib
+          rsync *-runner.jar deployments/app.jar
+      - name: Deploy to Server
+          uses: easingthemes/ssh-deploy@v2.1.5
+          env:
+            SSH_PRIVATE_KEY: ${{ secrets.KEY }}
+            ARGS: "-rltgoDzvO --delete"
+            SOURCE: "deployments/"
+            REMOTE_HOST: ${{ secrets.HOST }}
+            REMOTE_USER: ${{ secrets.USERNAME }}
+            TARGET: /www/wwwroot/quarkus.tinydemo.cn
+      - name: executing remote ssh commands using ssh key
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.KEY }}
+          port: ${{ secrets.PORT }}
+          script: supervisorctl restart quarkus
