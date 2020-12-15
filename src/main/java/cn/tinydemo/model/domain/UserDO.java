@@ -1,8 +1,8 @@
-package cn.tinydemo.domain;
+package cn.tinydemo.model.domain;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import io.quarkus.hibernate.orm.panache.PanacheEntity;
 import lombok.Data;
+import org.eclipse.microprofile.openapi.annotations.media.Schema;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
@@ -16,12 +16,15 @@ import java.util.Date;
 @Data
 @Table(name = "user")
 public class UserDO {
+    @Schema(description = "主键")
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Schema(description = "用户名")
     private String username;
 
+    @Schema(description = "密码")
     private String password;
 
     @CreationTimestamp

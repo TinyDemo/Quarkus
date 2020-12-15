@@ -1,6 +1,6 @@
 package cn.tinydemo.repository;
 
-import cn.tinydemo.domain.UserDO;
+import cn.tinydemo.model.domain.UserDO;
 import io.quarkus.hibernate.orm.panache.PanacheRepository;
 
 import javax.enterprise.context.ApplicationScoped;

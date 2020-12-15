@@ -1,6 +1,6 @@
 package cn.tinydemo.service;
 
-import cn.tinydemo.domain.UserDO;
+import cn.tinydemo.model.domain.UserDO;
 import cn.tinydemo.repository.UserRepository;
 import org.hibernate.exception.ConstraintViolationException;
 import org.slf4j.Logger;
