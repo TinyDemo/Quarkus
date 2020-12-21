@@ -9,9 +9,9 @@
     <properties>
         <quarkus.platform.group-id>io.quarkus</quarkus.platform.group-id>
         <quarkus.platform.artifact-id>quarkus-universe-bom</quarkus.platform.artifact-id>
-        <quarkus.platform.version>1.10.3.Final</quarkus.platform.version>
+        <quarkus.platform.version>1.10.5.Final</quarkus.platform.version>
+        <quarkus-plugin.version>1.10.5.Final</quarkus-plugin.version>
         <surefire-plugin.version>2.22.1</surefire-plugin.version>
-        <quarkus-plugin.version>1.10.3.Final</quarkus-plugin.version>
         <compiler-plugin.version>3.8.1</compiler-plugin.version>
         <maven.compiler.parameters>true</maven.compiler.parameters>
         <maven.compiler.source>11</maven.compiler.source>
